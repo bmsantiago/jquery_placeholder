@@ -21,9 +21,7 @@ $.fn.extend({
           "fontColor": "#999"
           "class": ""
           "styles":""
-
-
-
+          
         options = $.extend(_defaults, options)
 
         if (!('placeholder' of document.createElement 'input'))
