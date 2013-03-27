@@ -83,12 +83,26 @@ $.fn.extend({
 
               $cur_input.on('keydown', (e)->
                 e.stopPropagation()
+
+                #Block arrows key
+                if ($(@).val() is "")
+                  charsBlocked = [37,38,39,40]
+                  if($.inArray(e.keyCode, charsBlocked) != -1)
+                    return false
+
                 $(".jqph_span:eq(#{$(@).data('jqph-at')})").hide()
               )
 
               $cur_input.on('keyup', (e)->
                 e.stopPropagation()
                 if($(@).val() == "")
+
+                  #Block arrows key
+                  if ($(@).val() is "")
+                    charsBlocked = [37,38,39,40]
+                    if($.inArray(e.keyCode, charsBlocked) != -1)
+                      return false
+
                   $(".jqph_span:eq(#{$(@).data('jqph-at')})").show()
                 else
                   $(".jqph_span:eq(#{$(@).data('jqph-at')})").hide() 

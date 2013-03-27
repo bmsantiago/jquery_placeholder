@@ -86,12 +86,28 @@ Placeholder plugin for IE <= 9
               }
             });
             $cur_input.on('keydown', function(e) {
+              var charsBlocked;
+
               e.stopPropagation();
+              if ($(this).val() === "") {
+                charsBlocked = [37, 38, 39, 40];
+                if ($.inArray(e.keyCode, charsBlocked) !== -1) {
+                  return false;
+                }
+              }
               return $(".jqph_span:eq(" + ($(this).data('jqph-at')) + ")").hide();
             });
             return $cur_input.on('keyup', function(e) {
+              var charsBlocked;
+
               e.stopPropagation();
               if ($(this).val() === "") {
+                if ($(this).val() === "") {
+                  charsBlocked = [37, 38, 39, 40];
+                  if ($.inArray(e.keyCode, charsBlocked) !== -1) {
+                    return false;
+                  }
+                }
                 return $(".jqph_span:eq(" + ($(this).data('jqph-at')) + ")").show();
               } else {
                 return $(".jqph_span:eq(" + ($(this).data('jqph-at')) + ")").hide();
