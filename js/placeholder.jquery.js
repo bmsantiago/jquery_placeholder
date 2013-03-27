@@ -32,7 +32,7 @@ Placeholder plugin for IE <= 9
       options = $.extend(_defaults, options);
       if (!('placeholder' in document.createElement('input'))) {
         return $(this).each(function(index) {
-          var $cur_input, $span, extraTop, placeholder, spanCSS;
+          var $cur_input, $span, extraTop, placeholder, spanCSS, spanMarginLeft;
 
           $cur_input = $(this);
           placeholder = $cur_input.attr('placeholder');
@@ -42,19 +42,24 @@ Placeholder plugin for IE <= 9
             if ($cur_input.css("margin") === "auto") {
               $cur_input.css("margin", "0");
             }
+            spanMarginLeft = 0;
+            if ($cur_input.css("margin-left") !== "auto") {
+              spanMarginLeft = parseInt($cur_input.css('margin-left').replace("px", ""));
+            }
             extraTop = 0;
             if (browser.name = 'msie' && browser.version === '9.0') {
               extraTop = 4;
             }
             spanCSS = {
               "top": $cur_input.position().top + extraTop,
-              "left": $cur_input.position().left + parseInt($cur_input.css("margin-left").replace("px", "")),
+              "left": $cur_input.position().left + spanMarginLeft,
               "width": $cur_input.width(),
               "height": $cur_input.height(),
               "padding": $cur_input.css('padding'),
               "padding-left": parseInt($cur_input.css('padding-left').replace("px", "")) + 2,
               "font-family": $cur_input.css('font-family'),
               "font-size": $cur_input.css('font-size'),
+              "line-height": $cur_input.css('height'),
               "color": options.fontColor,
               "position": "absolute"
             };

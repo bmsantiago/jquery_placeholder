@@ -40,17 +40,23 @@ $.fn.extend({
               if $cur_input.css("margin") is "auto"
                 $cur_input.css("margin","0")
 
+              spanMarginLeft = 0
+              if($cur_input.css("margin-left") != "auto")
+                spanMarginLeft = parseInt($cur_input.css('margin-left').replace("px",""))
+
               extraTop = 0 #for IE 9 fix top aligment
               if browser.name = 'msie' and browser.version == '9.0' then extraTop = 4
+              
               spanCSS =
                 "top": $cur_input.position().top + extraTop
-                "left":$cur_input.position().left + parseInt($cur_input.css("margin-left").replace("px",""))
+                "left":$cur_input.position().left + spanMarginLeft
                 "width" : $cur_input.width()
                 "height": $cur_input.height()
                 "padding": $cur_input.css('padding');
                 "padding-left": parseInt($cur_input.css('padding-left').replace("px","")) + 2
                 "font-family" : $cur_input.css('font-family')
                 "font-size": $cur_input.css('font-size')
+                "line-height": $cur_input.css('height')
                 "color": options.fontColor
                 "position": "absolute"
 
