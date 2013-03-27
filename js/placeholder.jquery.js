@@ -76,6 +76,9 @@ Placeholder plugin for IE <= 9
               $input = $(".jqph-input:eq(" + ($(this).data('jqph-at')) + ")");
               return $input.focus();
             });
+            $span.on("selectstart", function() {
+              return false;
+            });
             $cur_input.on('focusout', function(e) {
               e.stopPropagation();
               if ($(this).val() === "") {

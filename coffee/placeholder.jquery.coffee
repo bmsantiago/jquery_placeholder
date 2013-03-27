@@ -72,6 +72,8 @@ $.fn.extend({
 
               )
 
+              $span.on("selectstart", ()-> return false);
+
               $cur_input.on('focusout', (e)->
                   e.stopPropagation()
                   if $(@).val() is ""
@@ -91,4 +93,6 @@ $.fn.extend({
                 else
                   $(".jqph_span:eq(#{$(@).data('jqph-at')})").hide() 
               )
+
+              
 })
